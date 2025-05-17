@@ -1,5 +1,6 @@
 final_output = [] # (output, iterations)
 failed_number = []
+failures = []
 num_dont_work = 0
 
 def machine(number):
@@ -18,13 +19,16 @@ def machine(number):
 for i in range(1000, 10000):
     n = i
     iterations = 0
-    while n != 6174 and iterations < 100:
+    while n != 6174 and iterations < 8:
         n = machine(n)
         iterations += 1
     final_output.append([n, iterations])
+    if iterations == 8:
+        failures.append(i)
 
 for i in final_output:
     if i[0] != 6174:
         num_dont_work += 1
 
-print(num_dont_work)
+print(f'Total Failures: {num_dont_work}')
+print(f'Failures: {failures}')
